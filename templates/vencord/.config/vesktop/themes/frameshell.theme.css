@@ -194,6 +194,29 @@ img[class*="Avatar"],
     border-radius: 50% !important;
 }
 
+/* What Discord draws as a circle around or next to a round profile picture stays a circle:
+ * the speaking ring and the push-to-talk dot in calls and voice tiles, participant stacks,
+ * the ring on a call avatar, empty and placeholder avatars (--unrounding squares them, so
+ * a square ring sat around a round picture) */
+[class*="participantAvatar"],
+[class*="povMedia"],
+[class*="povCircle"],
+[class*="povAvatarChip"],
+[class*="pttIndicator"],
+[class*="ring_"],
+[class*="avatarSpeaking"],
+[class*="voiceAvatar"],
+[class*="voiceSectionGuildImage"],
+[class*="voiceSectionNoGuildImageWrapper"],
+[class*="voiceSectionIconWrapper"],
+[class*="emptyUser"],
+[class*="placeholderAvatar"],
+[class*="profileAvatar"],
+[class*="skeletonAvatar"],
+[class*="partyMemberUnknown"] {
+    border-radius: 50% !important;
+}
+
 /* Ping and mention counters as pills, not boxes */
 [class*="numberBadge_"],
 [class*="lowerBadge_"] > div,
