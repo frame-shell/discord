@@ -377,11 +377,15 @@ export default definePlugin({
             if (!isDm && !mentioned)
                 return;
             const guild = channel?.guild_id ? GuildStore.getGuild(channel.guild_id) : null;
+            // A group DM has no guild and often no name, so without kind it looked like a DM
+            const kind = channel?.type === 3 ? "group" : channel?.guild_id ? "server" : "dm";
             Native.send({
                 type: "message",
+                kind,
                 author: message.author.global_name ?? message.author.username,
-                channel: channel?.name ?? "",
+                channel: kind === "group" ? groupName(channel) : channel?.name ?? "",
                 guild: guild?.name ?? "",
+                mentioned,
                 content: message.content || "(attachment)",
                 avatar: message.author.avatar
                     ? `https://cdn.discordapp.com/avatars/${message.author.id}/${message.author.avatar}.png?size=128`
